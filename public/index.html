@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <title>サンプル</title>
+  <link rel="stylesheet" href="./app.css">
+</head>
+
+<body>
+  <h1>sample</h1>
+  <!-- cloakするとコンパイル前のテンプレート非表示にできる -->
+  <div id="app" v-cloak>
+    <p>{{ message }}</p>
+    <input v-model="message">
+    <!-- v-for -->
+    <ol>
+      <li v-for="item in list">{{ item }}</li>
+    </ol>
+    <!-- v-on -->
+    <button v-on:click="handClick">クリック</button>
+    <p>{{ count }}回くりっくしたよ!</p>
+    <button v-on:click="increment">カウントをふやす</button>
+    <!-- classと属性のデータバインディング -->
+    <p class="child" v-bind:class="classObject">Text</p>
+    <p style="color:blue" v-bind:style="styleObject">Text</p>
+    <!-- okをtrue,falseで切り替える -->
+    <div v-if="ok">v-if条件による描画</div>
+    <div v-show="ok">v-show条件による表示</div>
+    <template v-if="ok">
+      <header>タイトル</header>
+      <div>コンテンツ</div>
+    </template>
+    <!-- v-if -->
+    <div v-if="type === 'A'">
+      typeはA
+    </div>
+    <div v-else-if="type === 'B'">
+      typeはB
+    </div>
+    <div v-else>
+      すべての条件を満たさなかった
+    </div>
+    <!-- リストデータ -->
+    <ul>
+      <li v-for="item in lists" v-bind:key="item.id" v-bind:class="{ strong: item.hp > 300 }">
+        ID.{{ item.id }} {{ item.name }} HP.{{ item.hp }}
+        <span v-if="item.hp > 300">つよい！</span>
+      </li>
+    </ul>
+    <!-- formの入力値を名前にする -->
+    名前<input v-model="name">
+    <button v-on:click="doAdd">モンスターを追加</button>
+    <ul>
+      <li v-for="(item, index) in lists" v-bind:key="item.id">
+        ID.{{ item.id }} {{ item.name }} HP.{{ item.hp }}
+        <span v-if="item.hp < 50 && item.hp > 0">瀕死！</span>
+        <span v-if="item.hp < 10">死亡！</span>
+        <!-- 削除ボタン -->
+        <button v-on:click="doRemove(index)">モンスターの削除</button>
+        <!-- 攻撃ボタン -->
+        <button v-on:click="doAttack(index)">攻撃する</button>
+      </li>
+    </ul>
+    <!-- データを持たないv-for -->
+    <span v-for="numItem in [1,5,10,15]">{{ numItem }}</span>
+    <!-- 文字列v-for -->
+    <span v-for="item in text">{{ item }}</span>
+    <!-- コンパイル前のテンプレート非表示 -->
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="index.js"></script>
+</body>
+
+</html>
