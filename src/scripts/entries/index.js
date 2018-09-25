@@ -60,4 +60,18 @@ console.log(app.list)
 
 app.message = 'hello vue!'
 
-
+new Vue({
+    el: '#axios',
+    data() {
+        return {
+            list: []
+        }
+    },
+    created() {
+        axios.get('https://api.myjson.com/bins/1c3rrw').then(function (res) {
+            this.list = res.data
+        }.bind(this)).catch((e) => {
+            console.error(e)
+        })
+    }
+})

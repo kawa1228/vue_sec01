@@ -68,6 +68,14 @@
     <span v-for="item in text">{{ item }}</span>
     <!-- コンパイル前のテンプレート非表示 -->
   </div>
+  <!-- axiosの練習 -->
+  <div id="axios">
+    <p>axiosで表示</p>
+    <ul>
+      <li v-for="(item, index) in list" v-bind:key="item.id">ID.{{ item.id }} {{ item.name }} HP.{{ item.hp }}</li>
+    </ul>
+  </div>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="index.js"></script>
 </body>
